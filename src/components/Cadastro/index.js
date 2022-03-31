@@ -16,8 +16,8 @@ function Cadastro() {
     const enviarCadastro = (event) => {
 
         event.preventDefault();
+        
         setHabilitado(true);
-
 
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up`;
 
@@ -29,9 +29,7 @@ function Cadastro() {
                 password: senha
             })
 
-            .then(response => {
-                const { data } = response;
-                console.log(data);
+            .then(() => {
                 navigate("/");
             })
 
