@@ -36,7 +36,8 @@ function Cadastro() {
             })
 
             .catch((err) => {
-                console.log(err)
+                alert(`Erro ${err.response.status}. Por favor, tente novamente!`);
+                setHabilitado(false);
             });
     }
 
