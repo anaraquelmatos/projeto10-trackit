@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
@@ -10,12 +10,14 @@ function Cadastro() {
     const [nome, setNome] = useState("");
     const [foto, setFoto] = useState("");
     const [habilitado, setHabilitado] = useState(false);
+    const navigate = useNavigate();
 
 
     const enviarCadastro = (event) => {
 
         event.preventDefault();
         setHabilitado(true);
+
 
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up`;
 
@@ -30,6 +32,7 @@ function Cadastro() {
             .then(response => {
                 const { data } = response;
                 console.log(data);
+                navigate("/");
             })
 
             .catch((err) => {
