@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Login({ salvarToken }) {
@@ -37,11 +37,16 @@ function Login({ salvarToken }) {
     }
 
     return (
-        <form onSubmit={entrarTelaPrincipal}>
-            <input type="email" placeholder="email" disable={habilitado} value={email} required onChange={(e) => setEmail(e.target.value)}></input>
-            <input type="password" placeholder="senha" disable={habilitado} value={senha} required onChange={(e) => setSenha(e.target.value)}></input>
-            <button>Entrar</button>
-        </form>
+        <>
+            <form onSubmit={entrarTelaPrincipal}>
+                <input type="email" placeholder="email" disable={habilitado} value={email} required onChange={(e) => setEmail(e.target.value)}></input>
+                <input type="password" placeholder="senha" disable={habilitado} value={senha} required onChange={(e) => setSenha(e.target.value)}></input>
+                <button>Entrar</button>
+            </form>
+            <Link to={`/cadastro`}>
+                <p>Não tem uma conta? Cadastre-se!</p>
+            </Link>
+        </>
     );
 }
 
