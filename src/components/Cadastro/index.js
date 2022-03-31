@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+
 
 function Cadastro() {
 
@@ -44,7 +46,9 @@ function Cadastro() {
                 <input type="url" placeholder="foto" disable={habilitado} value={foto} required onChange={(e) => setFoto(e.target.value)}></input>
                 <button type="submit" disable={habilitado}>Cadastrar</button>
             </form>
-            <a>Já tem uma conta? Faça login!</a>
+            <Link to={`/`}>
+                <p>Já tem uma conta? Faça login!</p>
+            </Link>
         </>
     );
 }
