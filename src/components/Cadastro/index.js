@@ -7,34 +7,42 @@ function Cadastro() {
     const [senha, setSenha] = useState("");
     const [nome, setNome] = useState("");
     const [foto, setFoto] = useState("");
+    const [habilitado, setHabilitado] = useState(false);
 
-    function enviarCadastro(event) {
+
+    const enviarCadastro = (event) => {
 
         event.preventDefault();
+        setHabilitado(true);
 
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up`;
 
-        const promise = axios.post(URL, {
-            email,
-            name: nome,
-            image: foto,
-            password: senha
-        })
+        axios
+            .post(URL, {
+                email,
+                name: nome,
+                image: foto,
+                password: senha
+            })
 
-        promise.then(response => {
-            const { data } = response;
-            console.log(data);
-        })
+            .then(response => {
+                const { data } = response;
+                console.log(data);
+            })
+
+            .catch((err) => {
+                console.log(err)
+            });
     }
 
     return (
         <>
             <form onSubmit={enviarCadastro}>
-                <input type="email" placeholder="email" value={email} required onChange={(e) => setEmail(e.target.value)}></input>
-                <input type="password" placeholder="senha" value={senha} required onChange={(e) => setSenha(e.target.value)}></input>
-                <input type="text" placeholder="nome" value={nome} required onChange={(e) => setNome(e.target.value)}></input>
-                <input type="url" placeholder="foto" value={foto} required onChange={(e) => setFoto(e.target.value)}></input>
-                <button type="submit">Cadastrar</button>
+                <input type="email" placeholder="email" disable={habilitado} value={email} required onChange={(e) => setEmail(e.target.value)}></input>
+                <input type="password" placeholder="senha" disable={habilitado} value={senha} required onChange={(e) => setSenha(e.target.value)}></input>
+                <input type="text" placeholder="nome" disable={habilitado} value={nome} required onChange={(e) => setNome(e.target.value)}></input>
+                <input type="url" placeholder="foto" disable={habilitado} value={foto} required onChange={(e) => setFoto(e.target.value)}></input>
+                <button type="submit" disable={habilitado}>Cadastrar</button>
             </form>
             <a>Já tem uma conta? Faça login!</a>
         </>
