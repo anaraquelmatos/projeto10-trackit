@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import adicao from "../../assets/img/botao-adicionar.png"
 
-function TelaHoje() {
+function TelaHabitos() {
     return (
         <Body>
             <Header>
@@ -12,18 +13,23 @@ function TelaHoje() {
             </Header>
             <Main>
                 <div className="main">
+                    <h3>Meus hábitos</h3>
+                    <img src={adicao} alt="Adicionar" />
                 </div>
+                <p>
+                    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                </p>
             </Main>
             <Footer>
                 <div className="footer">
                     <Link to={`/habitos`}>
-                    <p>Hábitos</p>
+                        <p>Hábitos</p>
                     </Link>
                     <Link to={`/hoje`}>
-                    <p>Hoje</p>
+                        <p>Hoje</p>
                     </Link>
                     <Link to={`/historico`}>
-                    <p>Histórico</p>
+                        <p>Histórico</p>
                     </Link>
                 </div>
             </Footer>
@@ -54,7 +60,7 @@ const Header = styled.header`
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+    
         h1{
             font-family: 'Playball';
             font-style: normal;
@@ -64,12 +70,11 @@ const Header = styled.header`
             color: #FFFFFF;
         }
 
-        img{
+         img{
             width: 51px;
             height: 51px;
             border-radius: 98.5px;
         }
-    }
 `
 const Main = styled.main`
     width: 100vw;
@@ -83,6 +88,29 @@ const Main = styled.main`
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+        h3{
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22.976px;
+            line-height: 29px;
+            color: #126BA5;
+        }
+
+        img{
+            width: 40px;
+            height: 35px;
+            border-radius: 4.63636px;
+        }
+
+    p{
+        padding: 0 17px 20px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17.976px;
+        line-height: 22px;
+        color: #666666;
     }
 `
 
@@ -129,4 +157,4 @@ const Footer = styled.footer`
     }
 `
 
-export default TelaHoje;
+export default TelaHabitos;
