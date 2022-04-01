@@ -62,7 +62,7 @@ function Login({ salvarToken }) {
         </Div>
     ) :
         <DivLoading>
-                <BallTriangle color="#00BFFF" height={120} width={120} />
+                <BallTriangle color="#52B6FF" height={120} width={120} />
         </DivLoading>;
 
 }
