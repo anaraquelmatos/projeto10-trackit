@@ -2,10 +2,24 @@ import { useState } from "react";
 import styled from "styled-components";
 import adicao from "../../assets/img/botao-adicionar.png";
 
-function Habito() {
+function Habito({nome, dias, setNome, setDias}) {
 
     const [estado, setEstado] = useState("inicio");
     const [habito, setHabito] = useState("");
+    const [domingo, setDomingo] = useState(false);
+    const [segunda, setSegunda] = useState(false);
+    const [terca, setTerca] = useState(false);
+    const [quarta, setQuarta] = useState(false);
+    const [quinta, setQuinta] = useState(false);
+    const [sexta, setSexta] = useState(false);
+    const [sabado, setSabado] = useState(false);
+    const diaDomingo = `dia ${domingo ? "selecionado" : ""}`;
+    const diaSegunda = `dia ${segunda ? "selecionado" : ""}`;
+    const diaTerca = `dia ${terca ? "selecionado" : ""}`;
+    const diaQuarta = `dia ${quarta ? "selecionado" : ""}`;
+    const diaQuinta = `dia ${quinta ? "selecionado" : ""}`;
+    const diaSexta = `dia ${sexta ? "selecionado" : ""}`;
+    const diaSabado = `dia ${sabado ? "selecionado" : ""}`;
 
     if (estado === "inicio") {
         return (
@@ -31,13 +45,13 @@ function Habito() {
                     <form>
                         <input type="text" placeholder="nome do hábito" value={habito} required onChange={(e) => setHabito(e.target.value)} />
                         <div className="dias">
-                            <p>D</p>
-                            <p>S</p>
-                            <p>T</p>
-                            <p>Q</p>
-                            <p>Q</p>
-                            <p>S</p>
-                            <p>S</p>
+                            <p className={diaDomingo} onClick={() => setDomingo(!domingo)}>D</p>
+                            <p className={diaSegunda} onClick={() => setSegunda(!segunda)}>S</p>
+                            <p className={diaTerca} onClick={() => setTerca(!terca)}>T</p>
+                            <p className={diaQuarta} onClick={() => setQuarta(!quarta)}>Q</p>
+                            <p className={diaQuinta} onClick={() => setQuinta(!quinta)}>Q</p>
+                            <p className={diaSexta} onClick={() => setSexta(!sexta)}>S</p>
+                            <p className={diaSabado} onClick={() => setSabado(!sabado)}>S</p>
                         </div>
                         <div className="botoes">
                             <button type="submit" className="botao-cancelar">Cancelar</button>
@@ -115,6 +129,11 @@ p{
             border-radius: 5px;
             font-style: normal;
             color: #DBDBDB;
+        }
+
+        .dia.selecionado{
+            background: #CFCFCF;
+            color: #FFFFFF;
         }
     }
 

@@ -8,6 +8,9 @@ import Cabecalho from "../Cabecalho";
 function TelaHabitos({ token }) {
 
     const [habitos, setHabitos] = useState({});
+    const [nome, setNome] = useState([]);
+    const [dias, setDias] = useState([]);
+
 
     useEffect(() => {
 
@@ -30,12 +33,14 @@ function TelaHabitos({ token }) {
             })
     }, [])
 
+    axios
+        .post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, )
 
     return Object.values(habitos).length === 0 ? (
         <Body>
             <Cabecalho />
             <Main>
-                <Habito />
+                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias}/>
             </Main>
             <Rodape />
         </Body>
