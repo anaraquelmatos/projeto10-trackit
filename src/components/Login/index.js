@@ -140,6 +140,7 @@ const Form = styled.form`
         font-size: 17.976px;
         line-height: 22px;
     }
+    
     input::placeholder{
         font-style: normal;
         font-weight: 400;
