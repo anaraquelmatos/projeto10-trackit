@@ -1,8 +1,9 @@
 import { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import adicao from "../../assets/img/botao-adicionar.png";
 
-function Habito({nome, dias, setNome, setDias}) {
+function Habito({ dias, nome, setNome, setDias, token }) {
 
     const [estado, setEstado] = useState("inicio");
     const [habito, setHabito] = useState("");
@@ -20,6 +21,36 @@ function Habito({nome, dias, setNome, setDias}) {
     const diaQuinta = `dia ${quinta ? "selecionado" : ""}`;
     const diaSexta = `dia ${sexta ? "selecionado" : ""}`;
     const diaSabado = `dia ${sabado ? "selecionado" : ""}`;
+
+    const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`;
+
+    function criarHabito(event) {
+
+        event.preventDefault();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        axios
+            .post(URL, {
+                name: nome,
+                days: dias
+            }, config)
+
+            .then(response => {
+                const { data } = response;
+                console.log("mandei");
+                console.log(data);
+
+            })
+            .catch((err) => {
+                console.log(err.response);
+            })
+
+    }
 
     if (estado === "inicio") {
         return (
@@ -42,27 +73,134 @@ function Habito({nome, dias, setNome, setDias}) {
                     <img src={adicao} alt="Adicionar" />
                 </Div>
                 <div className="habito">
-                    <form>
-                        <input type="text" placeholder="nome do hábito" value={habito} required onChange={(e) => setHabito(e.target.value)} />
+                    <form onSubmit={criarHabito}>
+                        <input type="text" placeholder="nome do hábito" value={habito} required onChange={(e) => {
+                            setHabito(e.target.value)
+                            setNome(habito)
+                        }} />
                         <div className="dias">
-                            <p className={diaDomingo} onClick={() => setDomingo(!domingo)}>D</p>
-                            <p className={diaSegunda} onClick={() => setSegunda(!segunda)}>S</p>
-                            <p className={diaTerca} onClick={() => setTerca(!terca)}>T</p>
-                            <p className={diaQuarta} onClick={() => setQuarta(!quarta)}>Q</p>
-                            <p className={diaQuinta} onClick={() => setQuinta(!quinta)}>Q</p>
-                            <p className={diaSexta} onClick={() => setSexta(!sexta)}>S</p>
-                            <p className={diaSabado} onClick={() => setSabado(!sabado)}>S</p>
+                            <p className={diaDomingo} onClick={() => {
+                                setDomingo(!domingo)
+                                let array = [...dias];
+                                let index = array.indexOf(1);
+
+                                if (!domingo) {
+
+                                    setDias([...dias, 1]);
+
+                                } else if (index > -1) {
+
+                                    array.splice(index, 1);
+                                    setDias(array);
+                                }
+                            }}>D</p>
+                            <p className={diaSegunda} onClick={() => {
+                                setSegunda(!segunda)
+                                let array = [...dias];
+                                let index = array.indexOf(2);
+
+                                if (!segunda) {
+
+                                    setDias([...dias, 2]);
+
+                                } else if (index > -1) {
+
+                                    array.splice(index, 1);
+
+                                    setDias(array);
+                                }
+                            }}>S</p>
+                            <p className={diaTerca} onClick={() => {
+                                setTerca(!terca)
+                                let array = [...dias];
+                                let index = array.indexOf(3);
+
+                                if (!terca) {
+
+                                    setDias([...dias, 3]);
+
+                                } else if (index > -1) {
+
+                                    array.splice(index, 1);
+
+                                    setDias(array);
+                                }
+                            }}>T</p>
+                            <p className={diaQuarta} onClick={() => {
+                                setQuarta(!quarta)
+                                let array = [...dias];
+                                let index = array.indexOf(4);
+
+                                if (!quarta) {
+
+                                    setDias([...dias, 4]);
+
+                                } else if (index > -1) {
+
+                                    array.splice(index, 1);
+
+                                    setDias(array);
+                                }
+                            }
+                            }>Q</p>
+                            <p className={diaQuinta} onClick={() => {
+                                setQuinta(!quinta)
+                                let array = [...dias];
+                                let index = array.indexOf(5);
+
+                                if (!quinta) {
+
+                                    setDias([...dias, 5]);
+
+                                } else if (index > -1) {
+
+                                    array.splice(index, 1);
+
+                                    setDias(array);
+                                }
+                            }}>Q</p>
+                            <p className={diaSexta} onClick={() => {
+                                setSexta(!sexta)
+                                let array = [...dias];
+                                let index = array.indexOf(6);
+
+                                if (!sexta) {
+
+                                    setDias([...dias, 6]);
+
+                                } else if (index > -1) {
+
+                                    array.splice(index, 1);
+
+                                    setDias(array);
+                                }
+                            }}>S</p>
+                            <p className={diaSabado} onClick={() => {
+                                setSabado(!sabado)
+                                let array = [...dias];
+                                let index = array.indexOf(7);
+
+                                if (!sabado) {
+                                    setDias([...dias, 7]);
+
+                                } else if (index > -1) {
+
+                                    array.splice(index, 1);
+
+                                    setDias(array);
+                                }
+                            }}>S</p>
                         </div>
                         <div className="botoes">
-                            <button type="submit" className="botao-cancelar">Cancelar</button>
+                            <button className="botao-cancelar">Cancelar</button>
                             <button type="submit" className="botao-salvar">Salvar</button>
                         </div>
                     </form>
-                </div>
+                </div >
                 <p>
                     Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
                 </p>
-            </Container>
+            </Container >
         );
     }
 }

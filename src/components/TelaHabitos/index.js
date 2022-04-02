@@ -33,18 +33,16 @@ function TelaHabitos({ token }) {
             })
     }, [])
 
-    axios
-        .post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, )
-
-    return Object.values(habitos).length === 0 ? (
+    //Object.values(habitos).length === 0 ?
+    return (
         <Body>
             <Cabecalho />
             <Main>
-                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias}/>
+                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token}/>
             </Main>
             <Rodape />
         </Body>
-    ) : <p>Tem conteúdo</p>;
+    );
 
 }
 
