@@ -4,11 +4,14 @@ import styled from "styled-components";
 import Listagem from "../Listagem";
 
 
-function ListaHabitos({ token }) {
+function ListaHabitos({ token, frase}) {
 
     const [habitos, setHabitos] = useState([]);
+    const [contador, setContador] = useState(0);
 
-    useEffect(() => {
+    useEffect(() => atualizarInformações(), [contador]);
+
+    function atualizarInformações() {
 
         const config = {
             headers: {
@@ -22,31 +25,32 @@ function ListaHabitos({ token }) {
             .then((response) => {
                 const { data } = response;
                 setHabitos(data);
+                setContador(contador + 1);
             })
             .catch((err) => {
                 console.log(err.response);
             })
-    }, [])
+    }
 
-    
     return (
         <Cadastro>
             {
                 habitos.map((habito) => {
                     return (
-                        <Listagem key={habito.id} nome={habito.name} dias={habito.days} token={token} id={habito.id} 
-                        habitos={habitos} setHabitos={setHabitos}
+                        <Listagem key={habito.id} nome={habito.name} dias={habito.days} token={token} id={habito.id}
+                            habitos={habitos} setHabitos={setHabitos} setContador={setContador} contador={contador}
                         />
                     );
                 })
             }
+            {frase}
         </Cadastro>
     );
 }
 
 const Cadastro = styled.div`
     width: 100vw;
-    heigth: 100vh;
+    heigth: 100%;
     background: #E5E5E5;
     font-family: 'Lexend Deca';
 

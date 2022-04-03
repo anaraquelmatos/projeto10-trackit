@@ -7,7 +7,7 @@ import SelecaoDias from "../SelecaoDias";
 import ListaHabitos from "../ListaHabitos";
 
 
-function Habito({ dias, nome, setNome, setDias, token, frase, habitos }) {
+function Habito({ dias, nome, setNome, setDias, token, frase, tamanho }) {
 
     const [estado, setEstado] = useState("inicio");
     const [habito, setHabito] = useState("");
@@ -89,30 +89,38 @@ function Habito({ dias, nome, setNome, setDias, token, frase, habitos }) {
                         </div>
                     </form>
                 </div >
-                <p>
-                    {frase}
-                </p>
+                <p className="descricao">{frase}</p>
+
             </Container >
         );
     } else if (estado === "reinicio") {
+            return (
+                <Container>
+                    <PaginaInicialHabitos click={setEstado} frase={frase} />
+                    <ListaHabitos token={token} frase={frase} tamanho={tamanho}/>
+                </Container>
+            );
+        }
 
-        return (
-            <Container>
-                <PaginaInicialHabitos click={setEstado} frase={frase} />
-                <ListaHabitos />
-            </Container>
-        );
-    }
 }
 
 
 const Container = styled.div`
 
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background: #E5E5E5;  
     color: #DBDBDB;
     font-family: 'Lexend Deca';
+
+    .descricao{
+        padding: 0 17px 0;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17.976px;
+        line-height: 22px;
+        color: #666666;
+    }
 
     .habito{
         width: 340px;

@@ -21,7 +21,7 @@ const Container = styled.div`
 font-family: 'Lexend Deca';
 
     .frase{
-        padding: 0 17px 20px;
+        padding: 29px 17px 0;
         font-style: normal;
         font-weight: 400;
         font-size: 17.976px;
@@ -113,7 +113,7 @@ const Div = styled.div`
 
     width: 339px;
     height: 35px;
-    margin: 22px auto;
+    margin: 28px auto 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;

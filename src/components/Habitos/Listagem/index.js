@@ -2,7 +2,7 @@ import styled from "styled-components";
 import lixeira from "../../../assets/img/lixeira.svg";
 import axios from "axios";
 
-function Listagem({ nome, dias, id, token, setHabitos, habitos }) {
+function Listagem({ nome, dias, id, token, setHabitos, habitos, setContador, contador }) {
 
 
     function excluirHabito(id) {
@@ -19,12 +19,11 @@ function Listagem({ nome, dias, id, token, setHabitos, habitos }) {
 
             const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
 
-            axios.delete(URL, config)
-
-            setHabitos(habitos.filter(habito => habito.id !== id));
+            axios
+            .delete(URL, config)
+            setHabitos(habitos.filter(habito => habito.id !== id))
+      
         }
-
-
     }
 
     const fundo = "#CFCFCF";
@@ -39,22 +38,23 @@ function Listagem({ nome, dias, id, token, setHabitos, habitos }) {
             <div className="lista">
                 <div className="programacao">
                     <Button fundo={dias.includes(1) ? fundo : "#FFFFFF"} cor={dias.includes(1) ? cor : "#DBDBDB"}>D</Button>
-                    <Button fundo={dias.includes(2) ? fundo : "#FFFFFF"} cor={dias.includes(1) ? cor : "#DBDBDB"}>S</Button>
+                    <Button fundo={dias.includes(2) ? fundo : "#FFFFFF"} cor={dias.includes(2) ? cor : "#DBDBDB"}>S</Button>
                     <Button fundo={dias.includes(3) ? fundo : "#FFFFFF"} cor={dias.includes(3) ? cor : "#DBDBDB"}>T</Button>
-                    <Button fundo={dias.includes(4) ? fundo : "#FFFFFF"} cor={dias.includes(3) ? cor : "#DBDBDB"}>Q</Button>
-                    <Button fundo={dias.includes(5) ? fundo : "#FFFFFF"} cor={dias.includes(4) ? cor : "#DBDBDB"}>Q</Button>
-                    <Button fundo={dias.includes(6) ? fundo : "#FFFFFF"} cor={dias.includes(5) ? cor : "#DBDBDB"}>S</Button>
-                    <Button fundo={dias.includes(7) ? fundo : "#FFFFFF"} cor={dias.includes(6) ? cor : "#DBDBDB"}>S</Button>
+                    <Button fundo={dias.includes(4) ? fundo : "#FFFFFF"} cor={dias.includes(4) ? cor : "#DBDBDB"}>Q</Button>
+                    <Button fundo={dias.includes(5) ? fundo : "#FFFFFF"} cor={dias.includes(5) ? cor : "#DBDBDB"}>Q</Button>
+                    <Button fundo={dias.includes(6) ? fundo : "#FFFFFF"} cor={dias.includes(6) ? cor : "#DBDBDB"}>S</Button>
+                    <Button fundo={dias.includes(7) ? fundo : "#FFFFFF"} cor={dias.includes(7) ? cor : "#DBDBDB"}>S</Button>
                 </div>
             </div>
         </Lista>
     );
 }
 
+
 const Lista = styled.div`
     width: 340px;
     height: 91px;
-    margin: 17px auto;
+    margin: 0 auto 10px;
     background: #FFFFFF;
     border-radius: 5px;
     font-family: 'Lexend Deca';

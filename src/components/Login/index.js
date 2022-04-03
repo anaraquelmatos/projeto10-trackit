@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
 import styled from "styled-components";
 import logoGrande from "../../assets/img/logo-grande.png";
-
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 function Login({ salvarToken }) {
 
@@ -12,6 +13,7 @@ function Login({ salvarToken }) {
     const [senha, setSenha] = useState("");
     const [habilitado, setHabilitado] = useState(false);
     const [loading, setLoading] = useState(false);
+    const { img, setImg } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -34,6 +36,7 @@ function Login({ salvarToken }) {
                 navigate("/hoje");
                 salvarToken(data.token)
                 setLoading(false);
+                setImg(data.image);
 
             })
             .catch((err) => {

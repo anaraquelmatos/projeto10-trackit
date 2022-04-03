@@ -34,12 +34,13 @@ function TelaHabitos({ token }) {
     }, [])
 
     const frase = "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!";
+    const tamanho = habitos.length;
 
     return Object.values(habitos).length === 0 ? (
         <Body>
             <Cabecalho />
             <Main>
-                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token} frase={frase} habitos={habitos}/>
+                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token} frase={frase} habitos={habitos} tamanho={tamanho}/>
             </Main>
             <Rodape />
         </Body>

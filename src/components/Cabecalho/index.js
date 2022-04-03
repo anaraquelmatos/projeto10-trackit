@@ -1,11 +1,15 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 function Cabecalho() {
+
+    const {img} = useContext(UserContext);
     return (
         <Header>
             <div className="header">
                 <h1>TrackIt</h1>
-                <img src="https://www.seekpng.com/png/detail/47-473309_care-bears-and-cousins-clip-art-best-friend.png" alt="imagem" />
+                <img src={img} alt="imagem" />
             </div>
         </Header>
     );
