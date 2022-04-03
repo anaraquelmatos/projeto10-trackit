@@ -2,11 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import PaginaInicialHabitos from "../PaginaInicialHabitos";
-import adicao from "../../assets/img/botao-adicionar.png";
+import adicao from "../../../assets/img/botao-adicionar.png";
 import SelecaoDias from "../SelecaoDias";
 import ListaHabitos from "../ListaHabitos";
 
-function Habito({ dias, nome, setNome, setDias, token }) {
+
+function Habito({ dias, nome, setNome, setDias, token, frase, habitos }) {
 
     const [estado, setEstado] = useState("inicio");
     const [habito, setHabito] = useState("");
@@ -38,7 +39,15 @@ function Habito({ dias, nome, setNome, setDias, token }) {
             }, config)
 
             .then(() => {
-                setEstado("reiniciar")
+                setEstado("inicio");
+                setHabito("");;
+                setDomingo(false);
+                setSegunda(false);
+                setTerca(false);
+                setQuarta(false);
+                setQuinta(false);
+                setSexta(false);
+                setSabado(false);
             })
             .catch((err) => {
                 alert(`Erro ${err.response.status}. Por favor, tente novamente!`);
@@ -50,7 +59,9 @@ function Habito({ dias, nome, setNome, setDias, token }) {
     if (estado === "inicio") {
 
         return (
-            <PaginaInicialHabitos click={setEstado} />
+            <>
+                <PaginaInicialHabitos click={setEstado} frase={frase} />
+            </>
         );
 
     } else if (estado === "adicionar") {
@@ -73,44 +84,35 @@ function Habito({ dias, nome, setNome, setDias, token }) {
                                 estadoSabado={sabado} setDias={setDias} dias={dias} />
                         </div>
                         <div className="botoes">
-                            <button disable={habilitado} className="botao-cancelar">Cancelar</button>
+                            <button disable={habilitado} onClick={() => setEstado("inicio")} className="botao-cancelar">Cancelar</button>
                             <button disable={habilitado} type="submit" className="botao-salvar">Salvar</button>
                         </div>
                     </form>
                 </div >
                 <p>
-                    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                    {frase}
                 </p>
             </Container >
         );
-    } else if (estado === "reiniciar") {
+    } else if (estado === "reinicio") {
+
         return (
             <Container>
-                <Div>
-                    <h3>Meus hábitos</h3>
-                    <img src={adicao} alt="Adicionar" />
-                </Div>
-                <ListaHabitos token={token}/>
-            </Container >
+                <PaginaInicialHabitos click={setEstado} frase={frase} />
+                <ListaHabitos />
+            </Container>
         );
     }
 }
+
 
 const Container = styled.div`
 
     width: 100vw;
     height: 100vh;
     background: #E5E5E5;  
+    color: #DBDBDB;
     font-family: 'Lexend Deca';
-
-    p{
-        padding: 0 17px 20px;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 17.976px;
-        line-height: 22px;
-        color: #666666;
-    }
 
     .habito{
         width: 340px;
@@ -146,14 +148,14 @@ const Container = styled.div`
             heigth: 30px;
             margin: 0 0 0 19px;
 
-            p{
-                padding: 3px 8px;
+            button{
+                width: 30px;
+                height: 30px;
+                color: #DBDBDB;
                 background: #FFFFFF;
                 border: 1px solid #D5D5D5;
                 box-sizing: border-box;
                 border-radius: 5px;
-                font-style: normal;
-                color: #DBDBDB;
             }
 
             .dia.selecionado{

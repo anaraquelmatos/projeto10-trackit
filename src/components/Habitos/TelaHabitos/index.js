@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Habito from "../Habito";
-import Rodape from "../Rodape";
-import Cabecalho from "../Cabecalho";
+import Rodape from "../../Rodape";
+import Cabecalho from "../../Cabecalho";
+import ListaHabitos from "../ListaHabitos";
 
 function TelaHabitos({ token }) {
 
@@ -32,12 +33,22 @@ function TelaHabitos({ token }) {
             })
     }, [])
 
-    //Object.values(habitos).length === 0 ?
-    return (
+    const frase = "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!";
+
+    return Object.values(habitos).length === 0 ? (
+        <Body>
+            <Cabecalho />
+            <Main>
+                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token} frase={frase} habitos={habitos}/>
+            </Main>
+            <Rodape />
+        </Body>
+    ) : (
         <Body>
             <Cabecalho />
             <Main>
                 <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token}/>
+                <ListaHabitos token={token}/>
             </Main>
             <Rodape />
         </Body>

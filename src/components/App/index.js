@@ -3,7 +3,8 @@ import { useState } from "react";
 import Login from "../Login";
 import Cadastro from "../Cadastro";
 import TelaHoje from "../TelaHoje";
-import TelaHabitos from "../TelaHabitos";
+import TelaHabitos from "../../components/Habitos/TelaHabitos";
+import ListaHabitos from "../Habitos/ListaHabitos";
 
 
 function App() {

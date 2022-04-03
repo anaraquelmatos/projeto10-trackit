@@ -20,7 +20,7 @@ function Rodape() {
 }
 
 const Footer = styled.footer`
-    width: 375px;
+    width: 100%;
     height: 70px;
     position: fixed;
     left: 0;

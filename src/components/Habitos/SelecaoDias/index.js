@@ -15,7 +15,7 @@ function SelecaoDias(props) {
 
     return (
         <Dias>
-            <p className={diaDomingo} onClick={() => {
+            <button type="button" className={diaDomingo} onClick={() => {
                 domingo(!estadoDomingo)
                 let array = [...dias];
                 let index = array.indexOf(1);
@@ -29,8 +29,8 @@ function SelecaoDias(props) {
                     array.splice(index, 1);
                     setDias(array);
                 }
-            }}>D</p>
-            <p className={diaSegunda} onClick={() => {
+            }}>D</button>
+            <button type="button" className={diaSegunda} onClick={() => {
                 segunda(!estadoSegunda)
                 let array = [...dias];
                 let index = array.indexOf(2);
@@ -45,8 +45,8 @@ function SelecaoDias(props) {
 
                     setDias(array);
                 }
-            }}>S</p>
-            <p className={diaTerca} onClick={() => {
+            }}>S</button>
+            <button type="button" className={diaTerca} onClick={() => {
                 terca(!estadoTerca)
                 let array = [...dias];
                 let index = array.indexOf(3);
@@ -61,8 +61,8 @@ function SelecaoDias(props) {
 
                     setDias(array);
                 }
-            }}>T</p>
-            <p className={diaQuarta} onClick={() => {
+            }}>T</button>
+            <button type="button" className={diaQuarta} onClick={() => {
                 quarta(!estadoQuarta)
                 let array = [...dias];
                 let index = array.indexOf(4);
@@ -78,8 +78,8 @@ function SelecaoDias(props) {
                     setDias(array);
                 }
             }
-            }>Q</p>
-            <p className={diaQuinta} onClick={() => {
+            }>Q</button>
+            <button type="button" className={diaQuinta} onClick={() => {
                 quinta(!estadoQuinta)
                 let array = [...dias];
                 let index = array.indexOf(5);
@@ -94,8 +94,8 @@ function SelecaoDias(props) {
 
                     setDias(array);
                 }
-            }}>Q</p>
-            <p className={diaSexta} onClick={() => {
+            }}>Q</button>
+            <button type="button" className={diaSexta} onClick={() => {
                 sexta(!estadoSexta)
                 let array = [...dias];
                 let index = array.indexOf(6);
@@ -110,8 +110,8 @@ function SelecaoDias(props) {
 
                     setDias(array);
                 }
-            }}>S</p>
-            <p className={diaSabado} onClick={() => {
+            }}>S</button>
+            <button type="button" className={diaSabado} onClick={() => {
                 sabado(!estadoSabado)
                 let array = [...dias];
                 let index = array.indexOf(7);
@@ -125,7 +125,7 @@ function SelecaoDias(props) {
 
                     setDias(array);
                 }
-            }}>S</p>
+            }}>S</button>
         </Dias>
     );
 }
@@ -136,6 +136,14 @@ const Dias = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    button{
+        width: 30px;
+        height: 30px;
+        border: 1px solid #D5D5D5;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
 `
 
 export default SelecaoDias;

@@ -55,7 +55,7 @@ function Cadastro() {
                 <button type="submit" disable={habilitado}>Cadastrar</button>
             </Form>
             <Link to={`/`}>
-                <p>Já tem uma conta? Faça login!</p>
+                <p className="login">Já tem uma conta? Faça login!</p>
             </Link>
         </Div>
     );
@@ -70,7 +70,7 @@ const Div = styled.div`
     align-items: center;
     font-family: 'Lexend Deca', sans-serif;
 
-    p {
+    .login {
         margin-top: 36px;
         font-style: normal;
         font-weight: 400;
