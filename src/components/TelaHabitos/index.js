@@ -24,9 +24,8 @@ function TelaHabitos({ token }) {
         axios
             .get(URL, config)
             .then((response) => {
-                const { data } = response
-                console.log(data)
-                setHabitos(data)
+                const { data } = response;
+                setHabitos(data);
             })
             .catch((err) => {
                 console.log(err.response);
@@ -53,6 +52,7 @@ const Body = styled.body`
 const Main = styled.main`
     width: 100vw;
     height: 100vh;
+    background: #E5E5E5; 
     font-family: 'Lexend Deca';
 `
 export default TelaHabitos;
