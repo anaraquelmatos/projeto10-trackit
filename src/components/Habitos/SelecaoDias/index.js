@@ -18,11 +18,11 @@ function SelecaoDias(props) {
             <button type="button" className={diaDomingo} onClick={() => {
                 domingo(!estadoDomingo)
                 let array = [...dias];
-                let index = array.indexOf(1);
+                let index = array.indexOf(0);
 
                 if (!estadoDomingo) {
 
-                    setDias([...dias, 1]);
+                    setDias([...dias, 0]);
 
                 } else if (index > -1) {
 
@@ -33,11 +33,11 @@ function SelecaoDias(props) {
             <button type="button" className={diaSegunda} onClick={() => {
                 segunda(!estadoSegunda)
                 let array = [...dias];
-                let index = array.indexOf(2);
+                let index = array.indexOf(1);
 
                 if (!estadoSegunda) {
 
-                    setDias([...dias, 2]);
+                    setDias([...dias, 1]);
 
                 } else if (index > -1) {
 
@@ -49,11 +49,11 @@ function SelecaoDias(props) {
             <button type="button" className={diaTerca} onClick={() => {
                 terca(!estadoTerca)
                 let array = [...dias];
-                let index = array.indexOf(3);
+                let index = array.indexOf(2);
 
                 if (!estadoTerca) {
 
-                    setDias([...dias, 3]);
+                    setDias([...dias, 2]);
 
                 } else if (index > -1) {
 
@@ -65,11 +65,11 @@ function SelecaoDias(props) {
             <button type="button" className={diaQuarta} onClick={() => {
                 quarta(!estadoQuarta)
                 let array = [...dias];
-                let index = array.indexOf(4);
+                let index = array.indexOf(3);
 
                 if (!estadoQuarta) {
 
-                    setDias([...dias, 4]);
+                    setDias([...dias, 3]);
 
                 } else if (index > -1) {
 
@@ -82,11 +82,11 @@ function SelecaoDias(props) {
             <button type="button" className={diaQuinta} onClick={() => {
                 quinta(!estadoQuinta)
                 let array = [...dias];
-                let index = array.indexOf(5);
+                let index = array.indexOf(4);
 
                 if (!estadoQuinta) {
 
-                    setDias([...dias, 5]);
+                    setDias([...dias, 4]);
 
                 } else if (index > -1) {
 
@@ -98,11 +98,11 @@ function SelecaoDias(props) {
             <button type="button" className={diaSexta} onClick={() => {
                 sexta(!estadoSexta)
                 let array = [...dias];
-                let index = array.indexOf(6);
+                let index = array.indexOf(5);
 
                 if (!estadoSexta) {
 
-                    setDias([...dias, 6]);
+                    setDias([...dias, 5]);
 
                 } else if (index > -1) {
 
@@ -114,10 +114,10 @@ function SelecaoDias(props) {
             <button type="button" className={diaSabado} onClick={() => {
                 sabado(!estadoSabado)
                 let array = [...dias];
-                let index = array.indexOf(7);
+                let index = array.indexOf(6);
 
                 if (!estadoSabado) {
-                    setDias([...dias, 7]);
+                    setDias([...dias, 6]);
 
                 } else if (index > -1) {
 

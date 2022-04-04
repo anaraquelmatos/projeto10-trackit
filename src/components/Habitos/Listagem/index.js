@@ -40,13 +40,13 @@ function Listagem({ nome, dias, id, token, setHabitos, habitos, setCont }) {
             </div>
             <div className="lista">
                 <div className="programacao">
-                    <Button fundo={dias.includes(1) ? fundo : "#FFFFFF"} cor={dias.includes(1) ? cor : "#DBDBDB"}>D</Button>
-                    <Button fundo={dias.includes(2) ? fundo : "#FFFFFF"} cor={dias.includes(2) ? cor : "#DBDBDB"}>S</Button>
-                    <Button fundo={dias.includes(3) ? fundo : "#FFFFFF"} cor={dias.includes(3) ? cor : "#DBDBDB"}>T</Button>
+                    <Button fundo={dias.includes(0) ? fundo : "#FFFFFF"} cor={dias.includes(0) ? cor : "#DBDBDB"}>D</Button>
+                    <Button fundo={dias.includes(1) ? fundo : "#FFFFFF"} cor={dias.includes(1) ? cor : "#DBDBDB"}>S</Button>
+                    <Button fundo={dias.includes(2) ? fundo : "#FFFFFF"} cor={dias.includes(2) ? cor : "#DBDBDB"}>T</Button>
+                    <Button fundo={dias.includes(3) ? fundo : "#FFFFFF"} cor={dias.includes(3) ? cor : "#DBDBDB"}>Q</Button>
                     <Button fundo={dias.includes(4) ? fundo : "#FFFFFF"} cor={dias.includes(4) ? cor : "#DBDBDB"}>Q</Button>
-                    <Button fundo={dias.includes(5) ? fundo : "#FFFFFF"} cor={dias.includes(5) ? cor : "#DBDBDB"}>Q</Button>
+                    <Button fundo={dias.includes(5) ? fundo : "#FFFFFF"} cor={dias.includes(5) ? cor : "#DBDBDB"}>S</Button>
                     <Button fundo={dias.includes(6) ? fundo : "#FFFFFF"} cor={dias.includes(6) ? cor : "#DBDBDB"}>S</Button>
-                    <Button fundo={dias.includes(7) ? fundo : "#FFFFFF"} cor={dias.includes(7) ? cor : "#DBDBDB"}>S</Button>
                 </div>
             </div>
         </Lista>
