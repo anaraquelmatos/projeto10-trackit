@@ -55,7 +55,8 @@ function TelaHoje({ token }) {
                         hoje.map(dia => {
                             return (
 
-                           <Hoje key={dia.id} nome={dia.name} recorde={dia.highestSequence} sequencia={dia.currentSequence} />
+                           <Hoje key={dia.id} id={dia.id} nome={dia.name} recorde={dia.highestSequence} 
+                           sequencia={dia.currentSequence} token={token} feito={dia.done}/> 
                            
                             )
                         })
