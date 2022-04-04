@@ -25,9 +25,6 @@ function ListaHabitos({ token, frase, setCont, cont }) {
                 const { data } = response;
                 setHabitos(data);
             })
-            .catch((err) => {
-                console.log(err.response);
-            })
     }
 
     return (

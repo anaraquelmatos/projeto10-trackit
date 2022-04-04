@@ -2,8 +2,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 function Rodape() {
+
+    const { porcentagem} = useContext(UserContext);
+
     return (
         <Footer>
             <div className="footer">
@@ -13,7 +18,7 @@ function Rodape() {
                 <Link to={`/hoje`}>
                     <DivFooter>
                         <CircularProgressbar
-                            value={60}
+                            value={porcentagem}
                             text="Hoje"
                             background
                             backgroundPadding={6}

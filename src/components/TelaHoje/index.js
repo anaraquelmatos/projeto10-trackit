@@ -5,6 +5,8 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Hoje from "../Hoje";
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 function TelaHoje({ token }) {
 
@@ -12,6 +14,10 @@ function TelaHoje({ token }) {
 
     const [hoje, setHoje] = useState([]);
     const [cont, setCont] = useState(0);
+    const { setPorcentagem, porcentagem } = useContext(UserContext);
+    
+    const resultado = `${porcentagem === 0 ? `Nenhum hábito concluído ainda` : `${porcentagem}% dos hábitos concluídos`}`;
+
 
     useEffect(() => {
 
@@ -26,38 +32,39 @@ function TelaHoje({ token }) {
             .get(URL, config)
             .then((response) => {
                 const { data } = response;
-                setHoje(data);
-                setCont(cont + 1);
-            })
-            .catch((err) => {
-                console.log(err.response);
+                setHoje(data); 
+                setPorcentagem(((data.filter((per) => per.done).length) / data.length) * 100);
             })
 
-    }, [cont])
+    }, [token, cont])
 
     return (
         <Body>
             <Cabecalho token={token} />
             <Main>
-                <div className="main">
+                <div className="data">
                     {
                         days.map(day => {
                             if (days.indexOf(day) == dayjs().day()) {
                                 return (
-                                    <p>{day}, {dayjs().format('DD/MM')}</p>
+
+                                    <p className="formato">{day}, {dayjs().format('DD/MM')}</p>
                                 )
                             }
                         })
                     }
+                    <div>
+                    </div>
+                <Span span={porcentagem}>{resultado}</Span>
                 </div>
-                <div>
+                <div className="habitosLista">
                     {
-                        hoje.map(dia => {
+                        hoje.map(item => {
                             return (
 
-                           <Hoje key={dia.id} id={dia.id} nome={dia.name} recorde={dia.highestSequence} 
-                           sequencia={dia.currentSequence} token={token} feito={dia.done}/> 
-                           
+                           <Hoje key={item.id} id={item.id} nome={item.name} recorde={item.highestSequence} 
+                           sequencia={item.currentSequence} token={token} item={item} cont={cont} 
+                           setCont={setCont}/>   
                             )
                         })
                     }
@@ -69,23 +76,45 @@ function TelaHoje({ token }) {
 
 }
 
+const Span = styled.span`
+    color: ${({span}) =>  {
+        return span === 0 ? "#BABABA" : "#8FC549"
+    }};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+
+`
+
 const Body = styled.body`
-    background: #E5E5E5;  
+    background: #E5E5E5; 
+    font-family: 'Lexend Deca';
 `
 
 const Main = styled.main`
     width: 100vw;
     height: 100vh;
-    font-family: 'Lexend Deca';
+    margin-bottom: 70px;
 
-    .main{
+    .data{
         width: 339px;
-        height: 35px;
-        margin: 22px auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        margin: 28px auto;
+
+        .formato{
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22.976px;
+            line-height: 29px;
+            color: #126BA5;
+        }
+    }
+
+    .habitosLista{
+        width: 340px;
+        margin: 0 auto;
     }
 `
+
 
 export default TelaHoje;

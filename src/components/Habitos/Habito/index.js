@@ -5,6 +5,7 @@ import PaginaInicialHabitos from "../PaginaInicialHabitos";
 import adicao from "../../../assets/img/botao-adicionar.png";
 import SelecaoDias from "../SelecaoDias";
 import ListaHabitos from "../ListaHabitos";
+import { ThreeDots } from "react-loader-spinner";
 
 
 function Habito({ dias, nome, setNome, setDias, token, frase, setCont, cont }) {
@@ -19,12 +20,15 @@ function Habito({ dias, nome, setNome, setDias, token, frase, setCont, cont }) {
     const [quinta, setQuinta] = useState(false);
     const [sexta, setSexta] = useState(false);
     const [sabado, setSabado] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`;
 
     function criarHabito(event) {
 
         event.preventDefault();
+
+        setLoading(true);
 
         const config = {
             headers: {
@@ -48,14 +52,19 @@ function Habito({ dias, nome, setNome, setDias, token, frase, setCont, cont }) {
                 setQuinta(false);
                 setSexta(false);
                 setSabado(false);
-                setCont(cont + 1)
+                setCont(cont + 1);
+                setLoading(false);
             })
             .catch((err) => {
                 alert(`Erro ${err.response}. Por favor, tente novamente!`);
                 setHabilitado(false);
+                setLoading(false);
             })
 
     }
+
+   const tag = !loading ? (<button disable={habilitado} type="submit" className="botao-salvar">Salvar</button>) :
+    (<DivLoading><ThreeDots color="#FFFFFF" width={50} /></DivLoading>)
 
     if (estado === "inicio") {
 
@@ -85,8 +94,10 @@ function Habito({ dias, nome, setNome, setDias, token, frase, setCont, cont }) {
                                 estadoSabado={sabado} setDias={setDias} dias={dias} />
                         </div>
                         <div className="botoes">
+                            <div className="abrangencia">
                             <button disable={habilitado} onClick={() => setEstado("inicio")} className="botao-cancelar">Cancelar</button>
-                            <button disable={habilitado} type="submit" className="botao-salvar">Salvar</button>
+                            {tag}
+                        </div>
                         </div>
                     </form>
                 </div >
@@ -206,6 +217,12 @@ const Container = styled.div`
             color: #FFFFFF;
         }
 
+        .abrangencia{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
     }
 }
 
@@ -233,6 +250,23 @@ const Div = styled.div`
         height: 35px;
         border-radius: 4.63636px;
     }
+`
+
+const DivLoading = styled.div`
+    width: 84px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: #52B6FF;
+    border-radius: 4.63636px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15.976px;
+    line-height: 20px;
+    color: #FFFFFF;
+
 `
 
 export default Habito;

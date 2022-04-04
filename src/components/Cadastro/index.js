@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import logoGrande from "../../assets/img/logo-grande.png";
+import { ThreeDots } from "react-loader-spinner";
 
 
 function Cadastro() {
@@ -12,12 +13,14 @@ function Cadastro() {
     const [nome, setNome] = useState("");
     const [foto, setFoto] = useState("");
     const [habilitado, setHabilitado] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
 
     const enviarCadastro = (event) => {
 
         event.preventDefault();
+        setLoading(true);
 
         setHabilitado(true);
 
@@ -33,15 +36,17 @@ function Cadastro() {
 
             .then(() => {
                 navigate("/");
+                setLoading(false);
             })
 
             .catch((err) => {
                 alert(`Erro ${err.response.status}. Por favor, tente novamente!`);
                 setHabilitado(false);
+                setLoading(false);
             });
     }
 
-    return (
+    return !loading ? (
         <Div>
             <div className="parteSuperior">
             <img src={logoGrande} alt="TrackIt"/>
@@ -58,7 +63,26 @@ function Cadastro() {
                 <p className="login">Já tem uma conta? Faça login!</p>
             </Link>
         </Div>
-    );
+    ):(
+        <Div>
+        <div className="parteSuperior">
+        <img src={logoGrande} alt="TrackIt"/>
+        <h1 className="titulo">TrackIt</h1>
+        </div>
+        <Form onSubmit={enviarCadastro}>
+            <input type="email" placeholder="email" disable={habilitado} value={email} required onChange={(e) => setEmail(e.target.value)}></input>
+            <input type="password" placeholder="senha" disable={habilitado} value={senha} required onChange={(e) => setSenha(e.target.value)}></input>
+            <input type="text" placeholder="nome" disable={habilitado} value={nome} required onChange={(e) => setNome(e.target.value)}></input>
+            <input type="url" placeholder="foto" disable={habilitado} value={foto} required onChange={(e) => setFoto(e.target.value)}></input>
+            <DivLoading>
+                    <ThreeDots color="#FFFFFF" width={50} />
+                </DivLoading>
+        </Form>
+        <Link to={`/`}>
+            <p className="login">Já tem uma conta? Faça login!</p>
+        </Link>
+    </Div>
+    )
 }
 
 const Div = styled.div`
@@ -157,6 +181,22 @@ const Form = styled.form`
         text-align: center;
         color: #FFFFFF;
     }
+`
+
+const DivLoading = styled.div`
+    width: 303px;
+    height: 45px;
+    border:none;
+    background-color: #52B6FF;
+    border-radius: 4.63636px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20.976px;
+    line-height: 26px;
+    text-align: center;
+    color: #FFFFFF;
+
 `
 
 export default Cadastro;

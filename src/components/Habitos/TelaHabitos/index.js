@@ -29,9 +29,6 @@ function TelaHabitos({ token }) {
                 const { data } = response;
                 setHabitos(data);
             })
-            .catch((err) => {
-                console.log(err.response);
-            })
 
     }, [cont])
 
