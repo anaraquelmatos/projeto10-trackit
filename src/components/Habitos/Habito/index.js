@@ -7,7 +7,7 @@ import SelecaoDias from "../SelecaoDias";
 import ListaHabitos from "../ListaHabitos";
 
 
-function Habito({ dias, nome, setNome, setDias, token, frase, tamanho }) {
+function Habito({ dias, nome, setNome, setDias, token, frase, setCont, cont }) {
 
     const [estado, setEstado] = useState("inicio");
     const [habito, setHabito] = useState("");
@@ -40,7 +40,7 @@ function Habito({ dias, nome, setNome, setDias, token, frase, tamanho }) {
 
             .then(() => {
                 setEstado("inicio");
-                setHabito("");;
+                setHabito("");
                 setDomingo(false);
                 setSegunda(false);
                 setTerca(false);
@@ -48,9 +48,10 @@ function Habito({ dias, nome, setNome, setDias, token, frase, tamanho }) {
                 setQuinta(false);
                 setSexta(false);
                 setSabado(false);
+                setCont(cont + 1)
             })
             .catch((err) => {
-                alert(`Erro ${err.response.status}. Por favor, tente novamente!`);
+                alert(`Erro ${err.response}. Por favor, tente novamente!`);
                 setHabilitado(false);
             })
 
@@ -97,7 +98,7 @@ function Habito({ dias, nome, setNome, setDias, token, frase, tamanho }) {
             return (
                 <Container>
                     <PaginaInicialHabitos click={setEstado} frase={frase} />
-                    <ListaHabitos token={token} frase={frase} tamanho={tamanho}/>
+                    <ListaHabitos token={token} frase={frase}/>
                 </Container>
             );
         }
@@ -108,7 +109,7 @@ function Habito({ dias, nome, setNome, setDias, token, frase, tamanho }) {
 const Container = styled.div`
 
     width: 100vw;
-    height: 100%;
+    height: 300px;
     background: #E5E5E5;  
     color: #DBDBDB;
     font-family: 'Lexend Deca';

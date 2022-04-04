@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { BallTriangle } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
 import logoGrande from "../../assets/img/logo-grande.png";
 import { useContext } from "react";
@@ -13,7 +13,7 @@ function Login({ salvarToken }) {
     const [senha, setSenha] = useState("");
     const [habilitado, setHabilitado] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { img, setImg } = useContext(UserContext);
+    const { setImg } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -63,10 +63,25 @@ function Login({ salvarToken }) {
             </Link>
 
         </Div>
-    ) :
-        <DivLoading>
-                <BallTriangle color="#52B6FF" height={120} width={120} />
-        </DivLoading>;
+    ) : (
+
+        <Div>
+            <div className="parteSuperior">
+                <img src={logoGrande} alt="TrackIt" />
+                <h1 className="titulo">TrackIt</h1>
+            </div>
+            <Form onSubmit={entrarTelaPrincipal}>
+                <input type="email" placeholder="email" disable={habilitado} value={email} required onChange={(e) => setEmail(e.target.value)}></input>
+                <input type="password" placeholder="senha" disable={habilitado} value={senha} required onChange={(e) => setSenha(e.target.value)}></input>
+                <DivLoading>
+                    <ThreeDots color="#FFFFFF" width={50} />
+                </DivLoading>
+            </Form>
+            <Link to={`/cadastro`}>
+                <p>Não tem uma conta? Cadastre-se!</p>
+            </Link>
+        </Div>
+    );
 
 }
 
@@ -169,12 +184,14 @@ const Form = styled.form`
 `
 
 const DivLoading = styled.div`
-    width: 100%;
-    heigth: 100%;
-    margin: 250px auto;
+    width: 303px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #52B6FF;
+    opacity: 0.7;
+    border-radius: 4.63636px;
 
 `
 

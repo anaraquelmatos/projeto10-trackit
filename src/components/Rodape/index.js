@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 function Rodape() {
     return (
@@ -9,7 +11,21 @@ function Rodape() {
                     <p>Hábitos</p>
                 </Link>
                 <Link to={`/hoje`}>
-                    <p>Hoje</p>
+                    <DivFooter>
+                        <CircularProgressbar
+                            value={60}
+                            text="Hoje"
+                            background
+                            backgroundPadding={6}
+                            styles={buildStyles({
+                                backgroundColor: "#52B6FF",
+                                textColor: "#fff",
+                                pathColor: "#fff",
+                                trailColor: "transparent",
+                            })}
+
+                        />
+                    </DivFooter>
                 </Link>
                 <Link to={`/historico`}>
                     <p>Histórico</p>
@@ -18,6 +34,14 @@ function Rodape() {
         </Footer>
     );
 }
+
+
+const DivFooter = styled.div`
+    width: 91px;
+    height: 91px;
+    margin-bottom: 40px;
+    border-radius: 100px;
+`
 
 const Footer = styled.footer`
     width: 100%;

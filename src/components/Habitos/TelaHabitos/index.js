@@ -11,7 +11,7 @@ function TelaHabitos({ token }) {
     const [habitos, setHabitos] = useState({});
     const [nome, setNome] = useState([]);
     const [dias, setDias] = useState([]);
-
+    const [cont, setCont] = useState(0);
 
     useEffect(() => {
 
@@ -20,6 +20,7 @@ function TelaHabitos({ token }) {
                 Authorization: `Bearer ${token}`
             }
         }
+
 
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`;
         axios
@@ -31,16 +32,18 @@ function TelaHabitos({ token }) {
             .catch((err) => {
                 console.log(err.response);
             })
-    }, [])
+
+    }, [cont])
 
     const frase = "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!";
-    const tamanho = habitos.length;
+
 
     return Object.values(habitos).length === 0 ? (
         <Body>
             <Cabecalho />
             <Main>
-                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token} frase={frase} habitos={habitos} tamanho={tamanho}/>
+                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token} frase={frase} 
+                habitos={habitos} setCont={setCont} cont={cont}/>
             </Main>
             <Rodape />
         </Body>
@@ -48,8 +51,9 @@ function TelaHabitos({ token }) {
         <Body>
             <Cabecalho />
             <Main>
-                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token}/>
-                <ListaHabitos token={token}/>
+                <Habito nome={nome} dias={dias} setNome={setNome} setDias={setDias} token={token} 
+                setCont={setCont} cont={cont}/>
+                <ListaHabitos token={token} setCont={setCont} cont={cont}/>
             </Main>
             <Rodape />
         </Body>

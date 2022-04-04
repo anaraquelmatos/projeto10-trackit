@@ -2,7 +2,7 @@ import styled from "styled-components";
 import lixeira from "../../../assets/img/lixeira.svg";
 import axios from "axios";
 
-function Listagem({ nome, dias, id, token, setHabitos, habitos, setContador, contador }) {
+function Listagem({ nome, dias, id, token, setHabitos, habitos, setCont }) {
 
 
     function excluirHabito(id) {
@@ -20,9 +20,12 @@ function Listagem({ nome, dias, id, token, setHabitos, habitos, setContador, con
             const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
 
             axios
-            .delete(URL, config)
+                .delete(URL, config)
+                .then(() => {
+                    setCont(id)
+                })
             setHabitos(habitos.filter(habito => habito.id !== id))
-      
+
         }
     }
 

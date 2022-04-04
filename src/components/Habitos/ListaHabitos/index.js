@@ -4,12 +4,11 @@ import styled from "styled-components";
 import Listagem from "../Listagem";
 
 
-function ListaHabitos({ token, frase}) {
+function ListaHabitos({ token, frase, setCont, cont }) {
 
     const [habitos, setHabitos] = useState([]);
-    const [contador, setContador] = useState(0);
 
-    useEffect(() => atualizarInformações(), [contador]);
+    useEffect(() => atualizarInformações(), [cont]);
 
     function atualizarInformações() {
 
@@ -25,7 +24,6 @@ function ListaHabitos({ token, frase}) {
             .then((response) => {
                 const { data } = response;
                 setHabitos(data);
-                setContador(contador + 1);
             })
             .catch((err) => {
                 console.log(err.response);
@@ -38,7 +36,7 @@ function ListaHabitos({ token, frase}) {
                 habitos.map((habito) => {
                     return (
                         <Listagem key={habito.id} nome={habito.name} dias={habito.days} token={token} id={habito.id}
-                            habitos={habitos} setHabitos={setHabitos} setContador={setContador} contador={contador}
+                            habitos={habitos} setHabitos={setHabitos} setCont={setCont}
                         />
                     );
                 })
@@ -49,8 +47,7 @@ function ListaHabitos({ token, frase}) {
 }
 
 const Cadastro = styled.div`
-    width: 100vw;
-    heigth: 100%;
+
     background: #E5E5E5;
     font-family: 'Lexend Deca';
 
