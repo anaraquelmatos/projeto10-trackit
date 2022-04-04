@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function TelaHoje({token}) {
+function TelaHoje({ token }) {
 
     const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
@@ -38,7 +38,13 @@ function TelaHoje({token}) {
             <Cabecalho />
             <Main>
                 <div className="main">
-                   
+                    {days.map(day => {
+                        if (days.indexOf(day) == dayjs().day()) {
+                            return (
+                                <p>{day}, {dayjs().format('DD/MM')}</p>
+                            )
+                        }
+                    })}
                 </div>
             </Main>
             <Rodape />
